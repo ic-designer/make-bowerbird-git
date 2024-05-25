@@ -11,7 +11,7 @@ override WORKDIR_TEST = $(WORKDIR_ROOT)/test/$(NAME)/$(VERSION)
 
 # Includes
 include bowerbird.mk
-include test/bowerbird-git/test-githooks.mk
+include test/bowerbird-git/test-githook-pre-push.mk
 
  # Targets
 .PHONY: private_clean
@@ -24,4 +24,4 @@ private_clean:
 
 .PHONY: private_test
 private_test: \
-		test-githooks \
+		test-githook-pre-push \

@@ -1,6 +1,6 @@
 # Constants
-override WORKDIR_GITHOOKS := .git/hooks
-override TARGET_GITHOOKS := .githooks
+WORKDIR_GITHOOKS := .git/hooks
+TARGET_GITHOOKS := .githooks
 
 # Always rebuild the hooks
 ifeq ($(filter-out $(TARGET_GITHOOKS), $(MAKECMDGOALS)), $(MAKECMDGOALS))
