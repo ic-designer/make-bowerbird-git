@@ -4,13 +4,24 @@ override TEST_FILE.MK := $(lastword $(MAKEFILE_LIST))
 
 #Targets
 PHONY: test-githook-pre-push
-test-githook-pre-push: $(WORKDIR_TEST)/test-githook-pre-push/hooks/pre-push-expected
-	$(MAKE) $(TARGET_GITHOOKS) WORKDIR_GITHOOKS=$(WORKDIR_TEST)/$@/hooks
+test-githook-pre-push: \
+		test-githook-pre-push-gitdir \
+		test-githook-pre-push-testdir \
+
+PHONY: test-githook-pre-push-gitdir
+test-githook-pre-push-gitdir: $(WORKDIR_TEST)/test-githook-pre-push-gitdir/hooks/pre-push-expected
+	@test -f  $(WORKDIR_GITHOOKS)/pre-push
+	@test -x  $(WORKDIR_GITHOOKS)/pre-push
+	@diff $(WORKDIR_GITHOOKS)/pre-push $(WORKDIR_TEST)/$@/hooks/pre-push-expected
+	@printf "\e[1;32mPassed: $(TEST_FILE.MK)::$@\e[0m\n"
+
+PHONY: test-githook-pre-push-testdir
+test-githook-pre-push-testdir: $(WORKDIR_TEST)/test-githook-pre-push-testdir/hooks/pre-push-expected
+	@$(MAKE) $(TARGET_GITHOOKS) WORKDIR_GITHOOKS=$(WORKDIR_TEST)/$@/hooks
 	@test -f $(WORKDIR_TEST)/$@/hooks/pre-push
 	@test -x $(WORKDIR_TEST)/$@/hooks/pre-push
 	@diff  $(WORKDIR_TEST)/$@/hooks/pre-push $(WORKDIR_TEST)/$@/hooks/pre-push-expected
 	@printf "\e[1;32mPassed: $(TEST_FILE.MK)::$@\e[0m\n"
-
 
 $(WORKDIR_TEST)/%/pre-push-expected: $(MAKEFILE_LIST)
 	@mkdir -p $(dir $@)
