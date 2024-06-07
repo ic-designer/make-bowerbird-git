@@ -29,6 +29,4 @@ private_clean:
 	@echo "INFO: Cleaning complete."
 	@echo
 
-.PHONY: private_test
-private_test: \
-		test-githook-pre-push \
+$(eval $(call bowerbird::generate-test-runner,private_test,test/,test*.mk))
