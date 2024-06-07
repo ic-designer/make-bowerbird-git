@@ -15,13 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 ```
 
-## [Unreleased] - YYYY-MM-DD
+## [0.1.0] - 2024-06-07
 
 ### Added
 - Migrated the githooks targets to a separate repo.
 - Added bowerbird dependencies for help and test.
 - Migrated the test runner over to bowerbird test.
 ### Changed
-### Deprecated
-### Fixed
-### Security
+- Explicitly disabled shell trace commands when creating the pre-push hook"
