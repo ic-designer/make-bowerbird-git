@@ -4,7 +4,7 @@ TARGET_GITHOOKS := .githooks
 
 # Always rebuild the hooks
 ifeq ($(filter-out $(TARGET_GITHOOKS), $(MAKECMDGOALS)), $(MAKECMDGOALS))
-	__ := $(shell $(MAKE) $(TARGET_GITHOOKS))
+____ := $(shell $(MAKE) $(TARGET_GITHOOKS) SHELL='command sh +x')
 endif
 
 # Targets

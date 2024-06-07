@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Migrated the githooks targets to a separate repo.
+- Added bowerbird dependencies for help and test.
+- Migrated the test runner over to bowerbird test.
 ### Changed
 ### Deprecated
 ### Fixed
