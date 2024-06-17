@@ -17,7 +17,6 @@ WORKDIR_TEST = $(WORKDIR_ROOT)/test/$(NAME)/$(VERSION)
 # Includes
 include bowerbird.mk
 include make/deps.mk
-include test/bowerbird-git/test-githook-pre-push.mk
 
  # Targets
 .PHONY: private_clean
@@ -29,4 +28,6 @@ private_clean:
 	@echo "INFO: Cleaning complete."
 	@echo
 
-$(eval $(call bowerbird::generate-test-runner,private_test,test/,test*.mk))
+ifdef bowerbird::test::generate-runner
+    $(call bowerbird::test::generate-runner,private_test,test)
+endif
