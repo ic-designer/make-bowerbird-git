@@ -3,8 +3,10 @@ WORKDIR_GITHOOKS := .git/hooks
 TARGET_GITHOOKS := .githooks
 
 # Always rebuild the hooks
-ifeq ($(filter-out $(TARGET_GITHOOKS), $(MAKECMDGOALS)), $(MAKECMDGOALS))
-____ := $(shell $(MAKE) $(TARGET_GITHOOKS) SHELL='command sh +x')
+ifndef __BOWERBIRD_TARGET_GITHOOKS__
+    ifeq ($(filter-out $(TARGET_GITHOOKS), $(MAKECMDGOALS)), $(MAKECMDGOALS))
+        export __BOWERBIRD_TARGET_GITHOOKS__ := $(shell $(MAKE) $(TARGET_GITHOOKS) SHELL='command sh +x')
+    endif
 endif
 
 # Targets
